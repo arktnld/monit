@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 import pathlib
 
 setup(
-    name='monit',
+    name='monit-agd',
     version='1.0',
     description='Programa de monitoramento de código python, desenvolvido para ser utilizado pelas funcionário da Agência de dados',
     long_description=pathlib.Path('README.md').read_text(),
@@ -20,7 +20,7 @@ setup(
         'python-dotenv'
     ],
     classifiers=[
-        'Development Status :: 1 - Alpha',
+        'Development Status :: 3 - Alpha',
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',

@@ -38,6 +38,7 @@ def main():
     except Exception as e:
         # Notify the Monitor about the error
         monit.notify(SetupError, e)
+        # monit.notify_and_exit(SetupError, e)
 
     monit.end()
 
