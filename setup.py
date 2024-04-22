@@ -3,7 +3,7 @@ import pathlib
 
 setup(
     name='monit-agd',
-    version='1.1.1',
+    version='1.3.0',
     description='Programa de monitoramento de código python, desenvolvido para ser utilizado pelas funcionário da Agência de dados',
     long_description=pathlib.Path('README.md').read_text(),
     long_description_content_type='text/markdown',

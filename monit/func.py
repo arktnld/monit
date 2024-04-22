@@ -1,14 +1,13 @@
 import socket
 import psutil
 import time
-import csv
 import datetime
-import smtplib
 import traceback
-from email.message import EmailMessage
 from math import floor
 import platform
 from datetime import datetime
+import smtplib
+from email.message import EmailMessage
 
 from monit import config
 
@@ -18,34 +17,33 @@ def build_table(type, err, table, init_time):
         table.project = config.project
         table.company = config.company
         table.dev = config.dev
-        table.date = datetime.now()
+        table.stderr = bool(err)
 
-        if init_time:
-            fim = time.perf_counter()
-            tempo_execucao = floor(fim - init_time)
-            table.runtime = tempo_execucao
+        fim = datetime.now()
 
-            print_error_to_console(type, err)
+        total_time = fim - init_time
+        table.runtime = total_time.total_seconds()
+        table.date_init = init_time
+        table.date_end = fim
 
-        table.cpu = get_cpu_usage()
-        table.mem = get_memory_usage()
-        table.disk = get_disk_usage()
+        table.cpu = _get_cpu_usage()
+        table.mem = _get_memory_usage()
+        table.disk = _get_disk_usage()
+        table.ping = _ping_host()
         table.system = platform.system()
-        table.ping = ping_host()
 
         if err:
             error = str(err).replace('\n', '')
-            # full_error = str(type) + ": " + str(error)
 
             table.type = type
             table.error = error
-        else:
-            table.type = ""
-            table.error = ""
+
+            _print_error_to_console(type, err)
+            _send_email_notification(error)
 
         return table
 
-def print_error_to_console(type, err):
+def _print_error_to_console(type, err):
     # Imprime o erro no console.
     if err:
         # error_type = type(err).__name__
@@ -54,9 +52,23 @@ def print_error_to_console(type, err):
         strerror = f"File \"{filename}\", line {line}\n\t{text}\n\n{type}: {err}"
         print(strerror)
 
+def _send_email_notification(err):
+    # Envia um e-mail com o erro.
+    if config.email and config.email_password:
+        message = f"{config.company}\n{config.project}\n\n{err}"
 
+        if err:
+            msg = EmailMessage()
+            msg['subject'] = f'Error in {config.project} on {config.company}'
+            msg['from'] = config.email
+            msg['to'] = config.email
+            msg.set_content(message)
 
-def ping_host():
+            with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+                smtp.login(config.email, config.email_password)
+                smtp.send_message(msg)
+
+def _ping_host():
     host = '1.1.1.1'  # Host alvo para ping (por exemplo, google.com)
     try:
         # Cria um socket TCP
@@ -74,20 +86,20 @@ def ping_host():
         print("Erro ao pingar o host:", e)
         return None
 
-def get_disk_usage():
+def _get_disk_usage():
     disk = psutil.disk_usage('/')
     total_disk_space = disk.total
     used_disk_space = disk.used
     disk_percent = (used_disk_space / total_disk_space) * 100
     return f"{disk_percent:.0f}%"
 
-def get_cpu_usage():
+def _get_cpu_usage():
     return f"{psutil.cpu_percent(interval=1):.0f}%"
 
-def get_memory_usage():
+def _get_memory_usage():
     mem = psutil.virtual_memory()
     return f"{mem.percent:.0f}%"
 
 # Função para converter bytes em megabytes
-def bytes_to_mb(bytes):
+def _bytes_to_mb(bytes):
     return bytes / (1024 * 1024)

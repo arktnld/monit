@@ -2,5 +2,7 @@ __pycache__
 .env
 build
 dist
-monit.egg-info
+monit_agd.egg-info
 .pypirc
+build.sh
+logs
