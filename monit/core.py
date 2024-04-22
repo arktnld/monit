@@ -1,5 +1,6 @@
 import time
 import sys
+import os
 
 from monit import config
 from monit import func
@@ -22,6 +23,9 @@ class DatabaseManager:
 
 class Monitor:
     def __init__(self):
+        if not os.path.exists('.env'):
+                raise FileNotFoundError("Arquivo .env não encontrado. Por favor, crie um arquivo .env com as configurações necessárias.")
+
         self.init_time = time.perf_counter()
         self.db_manager = DatabaseManager(DB_URL)
         self.initial_register()

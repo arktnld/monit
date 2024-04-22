@@ -2,7 +2,7 @@
 
 **Instalação:**
 ```bash
-pip install git+https://github.com/Agencia-de-Dados-bsb/monit.git
+pip install monit-agd
 ```
 **Exemplo arquivo `.env`:**
 ```bash
