@@ -4,48 +4,33 @@ import os
 
 from monit import config
 from monit import func
-from monit.database import Database, DataManager, Table
+from monit.database import Database, Table
+from monit.verify_env import verify_env
 
-DB_URL = f'mysql+pymysql://{config.user}:{config.password}@{config.host}/{config.database}'
+# Ensure .env is loaded
+verify_env()
 
-class DatabaseManager:
-    def __init__(self, db_url):
-        self.db = Database(db_url)
-        self.data_manager = DataManager(self.db)
-
-    def insert_data(self, data):
-        id = self.data_manager.insert(data)
-        return id
-
-    def close(self):
-        self.data_manager.close()
-
+# Get the initial time
+INIT_TIME = datetime.now()
 
 class Monitor:
-    def __init__(self):
-        if not os.path.exists('.env'):
-                raise FileNotFoundError("Arquivo .env não encontrado. Por favor, crie um arquivo .env com as configurações necessárias.")
+    TYPE = list()
+    ERROR = list()
 
-        self.init_time = datetime.now()
-        self.db_manager = DatabaseManager(DB_URL)
-
-        self.type = ""
-        self.error = ""
-
-    def register(self, type=None, err=None):
-        table = func.build_table(type, err, Table(), self.init_time)
-        self.db_manager.insert_data(table)
+    def register(self, type=None, error=None):
+        table = func.build_table(type, error, Table(), INIT_TIME)
+        Database.insert(table)
 
     def end(self):
-        self.register(self.type, self.error)
-        self.db_manager.close()
+        # type = ', '.join(self.TYPE)
+        # error = ', '.join(self.ERROR)
+        self.register(str(self.TYPE), str(self.ERROR))
 
     def notify(self, type=None, error=None):
-        self.type = type
-        self.error = error
-        # self.register(type, error)
+        self.TYPE.append(type)
+        self.ERROR.append(error)
 
-    def notify_and_exit(self, type=None, error=None):
-        self.register(type, error)
-        self.db_manager.close()
+    @staticmethod
+    def notify_and_exit(type=None, error=None):
+        Monitor().register(type, error)
         sys.exit(1)

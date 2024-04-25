@@ -16,6 +16,8 @@ password = os.getenv('DB_PASSWORD')
 host = os.getenv('DB_HOST')
 database = os.getenv('DB_DATABASE')
 
+db_url = f'mysql+pymysql://{user}:{password}@{host}/{database}'
+
 # Email info
 email = os.getenv('EMAIL')
 email_password = os.getenv('EMAIL_PASSWORD')

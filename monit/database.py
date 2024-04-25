@@ -3,6 +3,7 @@ from sqlalchemy import create_engine, Column, Integer, String, DateTime, Boolean
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 from sqlalchemy.orm import declarative_base
+from monit import config
 
 Base = declarative_base()
 
@@ -25,7 +26,7 @@ class Table(Base):
     system = Column(String(255))
     ping = Column(Integer)
 
-class Database:
+class DatabaseSession:
     def __init__(self, url):
         self.engine = create_engine(url)
         Base.metadata.create_all(self.engine)
@@ -46,3 +47,12 @@ class DataManager:
 
     def close(self):
             self.session.close()
+
+class Database:
+    @staticmethod
+    def insert(data):
+        db = DatabaseSession(config.db_url)
+        data_manager = DataManager(db)
+        id = data_manager.insert(data)
+        data_manager.close()
+        return id

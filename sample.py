@@ -2,7 +2,7 @@
 import time
 
 from monit.core import Monitor
-from monit.error import SetupError
+from monit.error import SetupError, HTTPError
 # from monit.logger import Logger
 # from monit.log2file import Log2File
 
@@ -21,7 +21,15 @@ def main():
     except Exception as e:
         print("Erro: Ocorreu um erro inesperado.")
         monit.notify(SetupError, e)
-        # monit.notify_and_exit(SetupError, e)
+
+    try:
+        # Your code that might raise exceptions
+        time.sleep(2)
+        raise ValueError("This is another a sample error.")
+
+    except Exception as e:
+        print("Erro: Ocorreu um erro inesperado.")
+        monit.notify(HTTPError, e)
 
     monit.end()
 
