@@ -1,8 +1,11 @@
 from dotenv import load_dotenv
 import os
 import json
+import inspect
 
-load_dotenv()
+calling_script_dir = os.path.dirname(os.path.abspath(inspect.stack()[1].filename))
+env_path = os.path.join(calling_script_dir, '.monit')
+load_dotenv(dotenv_path=env_path)
 
 # Code info
 project = os.getenv('PROJECT')

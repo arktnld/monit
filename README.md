@@ -4,7 +4,7 @@
 ```bash
 pip install monit-agd
 ```
-**Exemplo arquivo `.env`:**
+**Exemplo arquivo `.monit`:**
 ```bash
 # Project info
 # Informações obrigatórias
@@ -25,9 +25,9 @@ DB_DATABASE=teste
 EMAIL=
 EMAIL_PASSWORD=
 ```
-**Exemplo de Uso:**
+### Exemplo de Uso:
 
-Maneira mais simples de usar o Monit
+**Utilização do Monit para notificação de erros**
 ```python
 import time
 
@@ -49,7 +49,10 @@ if __name__ == "__main__":
     main()
 ```
 
-Registrar múltiplos erros
+**Utilização do Monit para notificação de erros que
+não são grandes o suficientes para exigir que o
+processo seja interrompido.**
+
 ```Python
 # sample.py
 import time
@@ -90,4 +93,7 @@ HTTPError
 FileError
 FolderError
 TooManyRequests
+DataCreateError
+DataUpdateError
+
 ```
