@@ -1,5 +1,5 @@
-__pycache__
 .monit
+__pycache__
 build
 dist
 monit_agd.egg-info

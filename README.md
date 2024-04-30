@@ -10,7 +10,6 @@ pip install monit-agd
 # Informações obrigatórias
 PROJECT=sample_project
 COMPANY=acme
-LOCATION=ec2
 DEV=coder
 
 # Database info
