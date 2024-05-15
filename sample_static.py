@@ -1,8 +1,8 @@
 # sample.py
 import time
 
-from monit.core import Monitor as monit
-from monit.error import SetupError
+from pymonit.core import Monitor as monit
+from pymonit.error import SetupError
 
 def main():
 

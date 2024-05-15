@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 import pathlib
 
 setup(
-    name='monit-agd',
+    name='pymonit',
     version='1.3.11',
     description='Programa de monitoramento de código python, desenvolvido para ser utilizado pelas funcionário da Agência de dados',
     long_description=pathlib.Path('README.md').read_text(),

@@ -1,3 +1,22 @@
+Metadata-Version: 2.1
+Name: pymonit
+Version: 1.3.11
+Summary: Programa de monitoramento de código python, desenvolvido para ser utilizado pelas funcionário da Agência de dados
+Home-page: https://github.com/arktnld/monit
+Author: arktnld
+Author-email: arktnld@gmail.com
+License: MIT
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: sqlalchemy
+Requires-Dist: pymysql
+Requires-Dist: psutil
+Requires-Dist: python-dotenv
+
 ### Monit
 
 **Instalação:**
@@ -30,8 +49,8 @@ EMAIL_PASSWORD=
 ```python
 import time
 
-from pymonit.core import Monitor as monit
-from pymonit.error import SetupError
+from monit.core import Monitor as monit
+from monit.error import SetupError
 
 def main():
 
@@ -56,8 +75,8 @@ processo seja interrompido.**
 # sample.py
 import time
 
-from pymonit.core import Monitor as monit
-from pymonit.error import SetupError
+from monit.core import Monitor
+from monit.error import SetupError
 # from monit.logger import Logger
 # from monit.log2file import Log2File
 
