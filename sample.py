@@ -1,8 +1,8 @@
 # sample.py
 import time
 
-from pymonit.core import Monitor
-from pymonit.error import SetupError, HTTPError
+from monit.core import Monitor
+from monit.error import SetupError, HTTPError
 # from monit.logger import Logger
 # from monit.log2file import Log2File
 

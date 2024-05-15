@@ -30,8 +30,8 @@ EMAIL_PASSWORD=
 ```python
 import time
 
-from pymonit.core import Monitor as monit
-from pymonit.error import SetupError
+from monit.core import Monitor as monit
+from monit.error import SetupError
 
 def main():
 
@@ -56,8 +56,8 @@ processo seja interrompido.**
 # sample.py
 import time
 
-from pymonit.core import Monitor as monit
-from pymonit.error import SetupError
+from monit.core import Monitor as monit
+from monit.error import SetupError
 # from monit.logger import Logger
 # from monit.log2file import Log2File
 

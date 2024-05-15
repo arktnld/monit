@@ -2,10 +2,10 @@ from datetime import datetime
 import sys
 import os
 
-from pymonit import config
-from pymonit import func
-from pymonit.database import Database, Table
-from pymonit.verify_env import verify_env
+from monit import config
+from monit import func
+from monit.database import Database, Table
+from monit.verify_env import verify_env
 
 # Ensure .env is loaded
 verify_env()

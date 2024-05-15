@@ -3,7 +3,7 @@ from sqlalchemy import create_engine, Column, Integer, String, DateTime, Boolean
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 from sqlalchemy.orm import declarative_base
-from pymonit import config
+from monit import config
 
 Base = declarative_base()
 

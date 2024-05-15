@@ -9,7 +9,7 @@ from datetime import datetime
 import smtplib
 from email.message import EmailMessage
 
-from pymonit import config
+from monit import config
 
 
 def build_table(type, err, table, init_time):
