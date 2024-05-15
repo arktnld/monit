@@ -24,7 +24,7 @@ class Monitor:
     def end(self):
         # type = ', '.join(self.TYPE)
         # error = ', '.join(self.ERROR)
-        self.register(str(self.TYPE), str(self.ERROR))
+        self.register(None, None)
 
     def notify(self, type=None, error=None):
         self.TYPE.append(type)

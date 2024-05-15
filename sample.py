@@ -25,7 +25,7 @@ def main():
     try:
         # Your code that might raise exceptions
         time.sleep(2)
-        raise ValueError("This is another a sample error.")
+        # raise ValueError("This is another a sample error.")
 
     except Exception as e:
         print("Erro: Ocorreu um erro inesperado.")
