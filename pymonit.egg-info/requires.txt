@@ -1,4 +1,0 @@
-sqlalchemy
-pymysql
-psutil
-python-dotenv
