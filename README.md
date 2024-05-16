@@ -33,7 +33,7 @@ EMAIL_PASSWORD=
 **Utilização do Monit para notificação de erros**
 ```python
 #
-#  IMPORTANTE: importar OS entrar na pasta atual é obrigatório no inicio do arquivo
+#  IMPORTANTE: importar OS e entrar na pasta atual é obrigatório no inicio do arquivo
 #
 import os
 
@@ -68,7 +68,7 @@ processo seja interrompido.**
 # sample.py
 
 #
-#  IMPORTANTE: importar OS entrar na pasta atual é obrigatório no inicio do arquivo
+#  IMPORTANTE: importar OS e entrar na pasta atual é obrigatório no inicio do arquivo
 #
 import os
 
