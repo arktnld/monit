@@ -65,8 +65,6 @@ não são grandes o suficientes para exigir que o
 processo seja interrompido.**
 
 ```Python
-# sample.py
-
 #
 #  IMPORTANTE: importar OS e entrar na pasta atual é obrigatório no inicio do arquivo
 #
