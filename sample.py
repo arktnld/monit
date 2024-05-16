@@ -2,7 +2,8 @@
 # sample.py
 
 #
-#  IMPORTANTE: importar OS e entrar na pasta atual é obrigatório no inicio do arquivo
+#  IMPORTANTE: importar OS e entrar na pasta atual é obrigatório no inicio do arquivo,
+#              para que o script seja executado corretamente em agendadores de tarefa.
 #
 import os
 
