@@ -14,23 +14,23 @@ verify_env()
 INIT_TIME = datetime.now()
 
 class Monitor:
-    TYPE = list()
+    # TYPE = list()
     ERROR = list()
 
     @staticmethod
-    def register(type=None, error=None):
-        table = func.build_table(type, error, Table(), INIT_TIME)
+    def register(error=None):
+        table = func.build_table(error, Table(), INIT_TIME)
         Database.insert(table)
 
     @staticmethod
     def end():
-        Monitor().register(None, None)
+        Monitor().register(None)
 
     @staticmethod
-    def notify(type=None, error=None):
-        Monitor().register(type, error)
+    def notify(error=None):
+        Monitor().register(error)
 
     @staticmethod
-    def notify_and_exit(type=None, error=None):
-        Monitor().register(type, error)
+    def notify_and_exit(error=None):
+        Monitor().register(error)
         sys.exit(1)

@@ -1,4 +1,12 @@
 # sample.py
+
+#
+#  IMPORTANTE: importar os entrar na pasta atual é obrigatório
+#
+import os
+
+script_path = os.path.abspath(__file__)
+os.chdir(os.path.dirname(script_path))
 import time
 
 from monit.core import Monitor as monit
@@ -12,7 +20,7 @@ def main():
 
     except Exception as e:
         print("Erro: Ocorreu um erro inesperado.")
-        monit.notify_and_exit(SetupError, e)
+        monit.notify_and_exit(e)
 
 
 if __name__ == "__main__":

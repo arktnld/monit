@@ -14,7 +14,7 @@ class Table(Base):
     project = Column(String(255))
     company = Column(String(255))
     dev = Column(String(255))
-    type = Column(String(255))
+    # type = Column(String(255))
     stderr = Column(Boolean)
     error = Column(Text)
     runtime = Column(Integer)

@@ -12,7 +12,7 @@ from email.message import EmailMessage
 from monit import config
 
 
-def build_table(type, err, table, init_time):
+def build_table(err, table, init_time):
 
         table.project = config.project
         table.company = config.company
@@ -35,21 +35,21 @@ def build_table(type, err, table, init_time):
         if err:
             error = str(err).replace('\n', '')
 
-            table.type = type
+            # table.type = type
             table.error = error
 
-            _print_error_to_console(type, err)
+            _print_error_to_console(err)
             _send_email_notification(error)
 
         return table
 
-def _print_error_to_console(type, err):
+def _print_error_to_console(err):
     # Imprime o erro no console.
     if err:
         # error_type = type(err).__name__
         tb = traceback.extract_tb(err.__traceback__)
         filename, line, func, text = tb[-1]
-        strerror = f"File \"{filename}\", line {line}\n\t{text}\n\n{type}: {err}"
+        strerror = f"File \"{filename}\", line {line}\n\t{text}\n\nError: {err}"
         print(strerror)
 
 def _send_email_notification(err):

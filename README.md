@@ -4,6 +4,10 @@
 ```bash
 pip install pymonit
 ```
+**Atualização:**
+```bash
+pip install -U pymonit
+```
 **Exemplo arquivo `.monit`:**
 ```bash
 # Project info
@@ -28,6 +32,14 @@ EMAIL_PASSWORD=
 
 **Utilização do Monit para notificação de erros**
 ```python
+#
+#  IMPORTANTE: importar OS e entrar na pasta atual é obrigatório
+#
+import os
+
+script_path = os.path.abspath(__file__)
+os.chdir(os.path.dirname(script_path))
+
 import time
 
 from monit.core import Monitor as monit
@@ -41,7 +53,7 @@ def main():
 
     except Exception as e:
         print("Erro: Ocorreu um erro inesperado.")
-        monit.notify_and_exit(SetupError, e)
+        monit.notify_and_exit(e)
 
 
 if __name__ == "__main__":
@@ -54,6 +66,15 @@ processo seja interrompido.**
 
 ```Python
 # sample.py
+
+#
+#  IMPORTANTE: importar OS e entrar na pasta atual é obrigatório
+#
+import os
+
+script_path = os.path.abspath(__file__)
+os.chdir(os.path.dirname(script_path))
+
 import time
 
 from monit.core import Monitor as monit
@@ -75,24 +96,10 @@ def main():
 
     except Exception as e:
         print("Erro: Ocorreu um erro inesperado.")
-        monit.notify(SetupError, e)
-        # monit.notify_and_exit(SetupError, e)
+        monit.notify(e)
 
     monit.end()
 
 
 if __name__ == "__main__":
     main()
-```
-**Tipos de erros:**
-```bash
-SetupError
-DatabaseError
-HTTPError
-FileError
-FolderError
-TooManyRequests
-DataCreateError
-DataUpdateError
-
-```
