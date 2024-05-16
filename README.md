@@ -32,15 +32,6 @@ EMAIL_PASSWORD=
 
 **Utilização do Monit para notificação de erros**
 ```python
-#
-#  IMPORTANTE: importar OS e entrar na pasta atual é obrigatório no inicio do arquivo,
-#              para que o script seja executado corretamente em agendadores de tarefa.
-#
-import os
-
-script_path = os.path.abspath(__file__)
-os.chdir(os.path.dirname(script_path))
-
 import time
 
 from monit.core import Monitor as monit
@@ -66,15 +57,6 @@ não são grandes o suficientes para exigir que o
 processo seja interrompido.**
 
 ```Python
-#
-#  IMPORTANTE: importar OS e entrar na pasta atual é obrigatório no inicio do arquivo,
-#              para que o script seja executado corretamente em agendadores de tarefa.
-#
-import os
-
-script_path = os.path.abspath(__file__)
-os.chdir(os.path.dirname(script_path))
-
 import time
 
 from monit.core import Monitor as monit
