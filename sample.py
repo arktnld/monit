@@ -2,7 +2,7 @@
 # sample.py
 
 #
-#  IMPORTANTE: importar os entrar na pasta atual é obrigatório
+#  IMPORTANTE: importar os entrar na pasta atual é obrigatório no inicio do arquivo
 #
 import os
 
