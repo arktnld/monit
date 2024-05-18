@@ -48,10 +48,10 @@ from monit.core import Monitor as monit
 from monit.logger import Logger
 from monit.log2file import Log2File
 
-def main():
+Log2File() # Salva todo o log em um arquivo
+log = Logger()
 
-    Log2File() # Salva todo o log em um arquivo
-    log = Logger()
+def main():
 
     try:
         log.info("Hello, World!")
