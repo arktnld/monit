@@ -20,22 +20,14 @@ def main():
     except Exception as e:
         monit.notify(e)
 
-    try:
-        sleep(2)
-        raise ValueError("This is another a sample error.")
-
-    except Exception as e:
-        monit.notify(e, "Custom message") # Mensagem personalizada
-
     num = 0
     for _ in range(3):
         num += 1
-    monit.msg(f"Total count in for loop: {num}")
+
+    monit.msg(f"Total count in for loop: {num}") # whatsapp
 
     monit.end()
 
 
 if __name__ == "__main__":
     main()
-
-

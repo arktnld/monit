@@ -11,9 +11,9 @@ INIT_TIME = datetime.now()
 class Monitor:
 
     @staticmethod
-    def register(error=None, custom_msg=None):
-        json = func.build_json(custom_msg, error, INIT_TIME)
-        HTTPClient.request(config.handler_url, json)
+    def register(error=None):
+        data = func.build_json(error, INIT_TIME)
+        HTTPClient.request(config.handler_url, data)
 
     @staticmethod
     def end():
@@ -21,13 +21,15 @@ class Monitor:
 
     @staticmethod
     def msg(msg):
-        Monitor().register(custom_msg=msg)
+        data = func.build_json()
+        data["custom_msg"] = msg
+        HTTPClient.request(config.handler_url, data)
 
     @staticmethod
-    def notify(error=None, custom_msg=None):
-        Monitor().register(error, custom_msg)
+    def notify(error=None):
+        Monitor().register(error)
 
     @staticmethod
-    def notify_and_exit(error=None, custom_msg=None):
-        Monitor().register(error, custom_msg)
+    def notify_and_exit(error=None):
+        Monitor().register(error)
         sys.exit(1)

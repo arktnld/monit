@@ -15,7 +15,7 @@ COMPANY='company_name'
 DEV='coder'
 LOCATION='location_name'
 HANDLER_URL='https://example.com'
-PHONE='556199999999'
+PHONE='556199999999' # whatsapp deixe em branco para desativar
 ```
 ### Exemplo de Uso:
 
@@ -43,7 +43,7 @@ if __name__ == "__main__":
 **Utilização avançada**
 
 ```Python
-import time
+from time import sleep
 
 from monit.core import Monitor as monit
 from monit.logger import Logger
@@ -56,24 +56,18 @@ def main():
 
     try:
         log.info("Hello, World!")
-        time.sleep(5)
 
+        sleep(2)
         raise ValueError("This is a sample error.")
 
     except Exception as e:
         monit.notify(e)
 
-    try:
-        time.sleep(2)
-        raise ValueError("This is another a sample error.")
-
-    except Exception as e:
-        monit.notify(e, "Custom message")
-
     num = 0
     for _ in range(3):
         num += 1
-    monit.msg(f"Total count in for loop: {num}")
+
+    monit.msg(f"Total count in for loop: {num}") # whatsapp
 
     monit.end()
 

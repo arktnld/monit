@@ -8,22 +8,23 @@ from datetime import datetime
 
 from monit import config
 
-def build_json(msg, err, init_time):
+def build_json(err=None, init_time=None):
     data = {
         "project": config.project,
         "company": config.company,
         "location": config.location,
         "dev": config.dev,
         "stderr": bool(err),
-        "custom_msg": msg,
         "phone": config.phone
     }
 
-    fim = datetime.now()
-    total_time = fim - init_time
-    data["runtime"] = total_time.total_seconds()
-    data["date_init"] = init_time.isoformat()
-    data["date_end"] = fim.isoformat()
+    if init_time:
+        fim = datetime.now()
+        init_time = datetime.now()
+        total_time = fim - init_time
+        data["runtime"] = total_time.total_seconds()
+        data["date_init"] = init_time.isoformat()
+        data["date_end"] = fim.isoformat()
 
     data["cpu"] = _get_cpu_usage()
     data["mem"] = _get_memory_usage()
@@ -34,11 +35,11 @@ def build_json(msg, err, init_time):
     if err:
         error = str(err).replace('\n', '')
         data["error"] = error
-        _print_error_to_console(msg, err)
+        _print_error_to_console(err)
 
     return data
 
-def _print_error_to_console(msg, err):
+def _print_error_to_console(err):
     if err:
         tb = traceback.extract_tb(err.__traceback__)
         filename, line, func, text = tb[-1]

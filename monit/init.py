@@ -12,6 +12,6 @@ def create_template():
     set_key(env_path, 'DEV', "coder")
     set_key(env_path, 'LOCATION', "location_name")
     set_key(env_path, 'HANDLER_URL', "https://example.com")
-    set_key(env_path, 'PHONE', "556199999999")
+    set_key(env_path, 'PHONE', "")
 
     load_dotenv(dotenv_path=env_path)
