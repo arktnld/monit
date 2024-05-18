@@ -32,7 +32,6 @@ def main():
         raise ValueError("This is a sample error.")
 
     except Exception as e:
-        print("Erro: Ocorreu um erro inesperado.")
         monit.notify_and_exit(e)
 
 
