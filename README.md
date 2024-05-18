@@ -10,23 +10,12 @@ pip install -U pymonit
 ```
 **Exemplo arquivo `.monit`:**
 ```bash
-# Project info
-# Informações obrigatórias
-PROJECT=sample_project
-COMPANY=acme
-DEV=coder
-
-# Database info
-# Informações obrigatórias
-DB_USER=user
-DB_PASSWORD=p@ssw0rd
-DB_HOST=localhost
-DB_DATABASE=teste
-
-# Email info
-# Deixe em branco para desativar o envio de e-mails
-EMAIL=
-EMAIL_PASSWORD=
+PROJECT='project_name'
+COMPANY='company_name'
+DEV='coder'
+LOCATION='location_name'
+HANDLER_URL='https://example.com'
+PHONE='556199999999'
 ```
 ### Exemplo de Uso:
 
