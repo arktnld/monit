@@ -1,36 +1,33 @@
 from datetime import datetime
 import sys
-import os
 
 from monit import config
 from monit import func
-from monit.database import Database, Table
-from monit.verify_env import verify_env
+from monit.http import HTTPClient
 
-# Ensure .env is loaded
-verify_env()
-
-# Get the initial time
 INIT_TIME = datetime.now()
 
+
 class Monitor:
-    # TYPE = list()
-    ERROR = list()
 
     @staticmethod
-    def register(error=None):
-        table = func.build_table(error, Table(), INIT_TIME)
-        Database.insert(table)
+    def register(error=None, custom_msg=None):
+        json = func.build_json(custom_msg, error, INIT_TIME)
+        HTTPClient.request(config.handler_url, json)
 
     @staticmethod
     def end():
-        Monitor().register(None)
+        Monitor().register()
 
     @staticmethod
-    def notify(error=None):
-        Monitor().register(error)
+    def msg(msg):
+        Monitor().register(custom_msg=msg)
 
     @staticmethod
-    def notify_and_exit(error=None):
-        Monitor().register(error)
+    def notify(error=None, custom_msg=None):
+        Monitor().register(error, custom_msg)
+
+    @staticmethod
+    def notify_and_exit(error=None, custom_msg=None):
+        Monitor().register(error, custom_msg)
         sys.exit(1)

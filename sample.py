@@ -1,46 +1,36 @@
 #
 # sample.py
+from time import sleep
 
-#
-#  IMPORTANTE: importar OS e entrar na pasta atual é obrigatório no inicio do arquivo,
-#              para que o script seja executado corretamente em agendadores de tarefa.
-#
-import os
-
-script_path = os.path.abspath(__file__)
-os.chdir(os.path.dirname(script_path))
-
-import time
-
-from monit.core import Monitor
-from monit.error import SetupError, HTTPError
-# from monit.logger import Logger
-# from monit.log2file import Log2File
+from monit.core import Monitor as monit
+from monit.logger import Logger
+from monit.log2file import Log2File
 
 def main():
-    # Initialize the Monitor
-    monit = Monitor()
 
-    # Log2File()
-    # log = Logger()
+    Log2File() # Salva todo o log em um arquivo
+    log = Logger()
 
     try:
-        # Your code that might raise exceptions
-        time.sleep(5)
+        log.info("Hello, World!")
+
+        sleep(2)
         raise ValueError("This is a sample error.")
 
     except Exception as e:
-        print("Erro: Ocorreu um erro inesperado.")
         monit.notify(e)
 
     try:
-        # Your code that might raise exceptions
-        time.sleep(2)
+        sleep(2)
         raise ValueError("This is another a sample error.")
 
     except Exception as e:
-        print("Erro: Ocorreu um erro inesperado.")
-        monit.notify(e)
+        monit.notify(e, "Custom message") # Mensagem personalizada
+
+    num = 0
+    for _ in range(3):
+        num += 1
+    monit.msg(f"Total count in for loop: {num}")
 
     monit.end()
 
