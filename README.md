@@ -15,7 +15,7 @@ COMPANY='company_name'
 DEV='coder'
 LOCATION='location_name'
 HANDLER_URL='https://example.com'
-PHONE='556199999999' # whatsapp deixe em branco para desativar
+PHONE='556199999999'
 ```
 ### Exemplo de Uso:
 
