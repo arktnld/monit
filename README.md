@@ -63,13 +63,9 @@ def main():
     except Exception as e:
         monit.notify(e)
 
-    num = 0
-    for _ in range(3):
-        num += 1
+    monit.msg("O Script terminou com sucesso.") # whatsapp
 
-    monit.msg(f"Total count in for loop: {num}") # whatsapp
-
-    monit.end()
+    monit.end() # manda sinal de fim sem erros
 
 
 if __name__ == "__main__":
