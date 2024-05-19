@@ -7,3 +7,4 @@ pymonit.egg-info
 build.sh
 logs
 lambda
+dashboard
