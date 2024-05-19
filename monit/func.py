@@ -8,6 +8,7 @@ from datetime import datetime
 
 from monit import config
 
+
 def build_json(err=None, init_time=None):
     data = {
         "project": config.project,
@@ -20,7 +21,6 @@ def build_json(err=None, init_time=None):
 
     if init_time:
         fim = datetime.now()
-        init_time = datetime.now()
         total_time = fim - init_time
         data["runtime"] = total_time.total_seconds()
         data["date_init"] = init_time.isoformat()

@@ -14,7 +14,7 @@ def main():
     try:
         log.info("Hello, World!")
 
-        sleep(2)
+        sleep(10)
         raise ValueError("This is a sample error.")
 
     except Exception as e:
