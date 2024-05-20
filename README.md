@@ -32,9 +32,9 @@ def main():
         raise ValueError("This is a sample error.")
 
     except Exception as e:
-        monit.notify_and_exit(e)
+        monit.notify_and_exit(e) # para o script
 
-    monit.end()
+    monit.end() # manda sinal de fim sem erros
 
 
 if __name__ == "__main__":
@@ -62,11 +62,10 @@ def main():
         raise ValueError("This is a sample error.")
 
     except Exception as e:
-        monit.notify(e)
+        monit.msg("Ocorreu um erro.") # Whatsapp
+        monit.notify(e) # não para o script
 
-    monit.msg("O Script terminou com sucesso.") # whatsapp
-
-    monit.end() # manda sinal de fim sem erros
+    monit.end()
 
 
 if __name__ == "__main__":
