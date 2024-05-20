@@ -34,6 +34,8 @@ def main():
     except Exception as e:
         monit.notify_and_exit(e)
 
+    monit.end()
+
 
 if __name__ == "__main__":
     main()
