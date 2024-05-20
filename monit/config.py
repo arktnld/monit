@@ -8,6 +8,8 @@ calling_script_dir = os.path.dirname(os.path.abspath(inspect.stack()[1].filename
 env_path = os.path.join(calling_script_dir, '.monit')
 load_dotenv(dotenv_path=env_path)
 
+path = calling_script_dir
+
 if not os.path.isfile(env_path):
     create_template()
     raise Exception("Arquivo de configuraçao '.monit' não existe")

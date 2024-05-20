@@ -5,6 +5,8 @@ import datetime
 import traceback
 import platform
 from datetime import datetime
+import os
+import getpass
 
 from monit import config
 
@@ -16,7 +18,8 @@ def build_json(err=None, init_time=None):
         "location": config.location,
         "dev": config.dev,
         "stderr": bool(err),
-        "phone": config.phone
+        "phone": config.phone,
+        "path": config.path
     }
 
     if init_time:
@@ -36,6 +39,12 @@ def build_json(err=None, init_time=None):
         error = str(err).replace('\n', '')
         data["error"] = error
         _print_error_to_console(err)
+
+    data["load_average"] = _get_load_average()
+    data["hostuser"] = getpass.getuser()
+    data["hostname"] = socket.gethostname()
+    data["os_version"] = platform.platform()
+
 
     return data
 
@@ -73,3 +82,12 @@ def _get_cpu_usage():
 def _get_memory_usage():
     mem = psutil.virtual_memory()
     return f"{mem.percent:.0f}%"
+
+def _get_load_average():
+    if hasattr(os, 'getloadavg'):
+        load_average = os.getloadavg()
+    else:
+        load_average = psutil.getloadavg()
+
+    load_average = ', '.join(f"{x:.2f}" for x in load_average)
+    return load_average
