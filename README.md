@@ -62,8 +62,18 @@ def main():
         raise ValueError("This is a sample error.")
 
     except Exception as e:
-        monit.msg("Ocorreu um erro.") # Whatsapp
+        monit.msg("Ocorreu um erro, tentando de novo...") # Whatsapp
         monit.notify(e) # não para o script
+
+        try:
+            log.info("Tentando novamente...")
+
+            sleep(2)
+            raise ValueError("This is another error.")
+
+        except Exception as e:
+            monit.msg("Script terminou com erros.")
+            monit.notify_end_exit(e)
 
     monit.end()
 
