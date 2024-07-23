@@ -15,7 +15,7 @@ def main():
         log.info("Hello, World!")
 
         sleep(10)
-        raise ValueError("This is a sample error.")
+        raise ValueError("Isso é um teste de erro 2.")
 
     except Exception as e:
         monit.notify(e)

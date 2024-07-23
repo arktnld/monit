@@ -73,11 +73,23 @@ def main():
 
         except Exception as e:
             monit.msg("Script terminou com erros.")
-            monit.notify_end_exit(e)
+            monit.notify_and_exit(e)
 
     monit.end()
 
 
 if __name__ == "__main__":
     main()
+```
+
+### Soluções de erros:
+
+#### PdhAddEnglishCounterW failed. Performance counters may be disabled.
+
+O erro ocorre porque os contadores de desempenho do Windows estão desativados ou corrompidos, causando a falha da função PdhAddEnglishCounterW.
+Execute os seguintes comandos em um CMD com privilégios administrativos:
+
+```cmd
+lodctr /r
+winmgmt /resyncperf
 ```

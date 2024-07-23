@@ -3,7 +3,7 @@ import pathlib
 
 setup(
     name='pymonit',
-    version='1.5.0',
+    version='1.5.1',
     description='Programa de monitoramento de código python, desenvolvido para ser utilizado pelas funcionário da Agência de dados',
     long_description=pathlib.Path('README.md').read_text(),
     long_description_content_type='text/markdown',
