@@ -82,9 +82,9 @@ if __name__ == "__main__":
     main()
 ```
 
-### Soluções de erros:
+### Soluções de erros
 
-#### PdhAddEnglishCounterW failed. Performance counters may be disabled.
+##### PdhAddEnglishCounterW
 
 O erro ocorre porque os contadores de desempenho do Windows estão desativados ou corrompidos, causando a falha da função PdhAddEnglishCounterW.
 Execute os seguintes comandos em um CMD com privilégios administrativos:
